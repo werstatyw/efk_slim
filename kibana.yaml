@@ -24,6 +24,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: elasticsearch-kibana
+  namespace: test-efk
   labels: 
     app: kibana
     release: "elasticsearch"
@@ -44,7 +45,7 @@ spec:
       annotations:
         
     spec:
-      automountServiceAccountToken: true
+  #    automountServiceAccountToken: true
       securityContext:
         fsGroup: 1000
       volumes:
@@ -104,9 +105,9 @@ spec:
         - containerPort: 5601
         resources:
           limits:
-            cpu: 1000m
-            memory: 2Gi
+            cpu: 400m
+            memory: 500Mi
           requests:
-            cpu: 1000m
-            memory: 2Gi
+            cpu: 200m
+            memory: 300Mi
         volumeMounts:
